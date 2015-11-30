@@ -21,7 +21,7 @@ import data.DependencyMap;
  * <p>
  * 
  * @author Simon Emmanuel Gutierrez Brida
- * @version 0.1u
+ * @version 0.1.1u
  */
 public class DependencyScanner {
 	
@@ -34,6 +34,8 @@ public class DependencyScanner {
 	 */
 	private Set<String> scannedPackages;
 	
+	private final String pathToScan;
+	
 	/**
 	 * Constructor
 	 * <p>
@@ -45,6 +47,7 @@ public class DependencyScanner {
 	 * @throws IOException
 	 */
 	public DependencyScanner(Path pathToScan) throws IllegalStateException, IOException {
+		this.pathToScan = pathToScan.toString();
 		ClassScanner classScanner = new ClassScanner(pathToScan);
 		scan(classScanner);
 	}
@@ -61,6 +64,13 @@ public class DependencyScanner {
 	 */
 	public Set<String> getScannedPackages() {
 		return this.scannedPackages;
+	}
+	
+	/**
+	 * @return the scanned path
+	 */
+	public String getScannedPath() {
+		return this.pathToScan;
 	}
 	
 	/**
